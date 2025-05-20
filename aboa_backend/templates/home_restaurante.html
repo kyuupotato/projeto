@@ -1,0 +1,256 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #fffaf5;
+        color: #333;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 40px;
+        background-color: #d35400;
+    }
+    .logo {
+        height: 45px;
+    }
+    .nav-links a {
+        margin-left: 20px;
+        color: #fff;
+        text-decoration: none;
+        font-weight: bold;
+    }
+    .nav-links a:hover {
+        text-decoration: underline;
+    }
+
+    .container {
+        max-width: 1100px;
+        margin: 40px auto;
+        padding: 20px;
+    }
+
+    .page-title {
+        font-size: 2rem;
+        color: #d35400;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .card,
+    .status-card {
+        background-color: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        margin-bottom: 30px;
+        padding: 20px 25px;
+    }
+    .status-card {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .status-text h2 {
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    .status-open {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+    .status-indicator.open {
+        width: 12px;
+        height: 12px;
+        background-color: #27ae60;
+        border-radius: 50%;
+    }
+
+    .button,
+    .button-outline,
+    .shortcut-btn {
+        background-color: #d35400;
+        color: white;
+        padding: 10px 16px;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        cursor: pointer;
+        font-size: 0.9rem;
+    }
+    .button-outline {
+        background: none;
+        border: 2px solid #d35400;
+        color: #d35400;
+    }
+    .button-small {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+    .button:hover,
+    .shortcut-btn:hover {
+        background-color: #e67e22;
+    }
+    .button-outline:hover {
+        background-color: #d35400;
+        color: white;
+    }
+
+    .menu-preview {
+        display: flex;
+        flex-wrap: wrap;
+        margin-top: 15px;
+    }
+    .menu-item {
+        background-color: #fafafa;
+        border: 1px solid #eee;
+        border-radius: 6px;
+        padding: 10px;
+        margin: 5px;
+        width: calc(25% - 10px);
+        text-align: center;
+        font-size: 0.9rem;
+    }
+    .menu-image {
+        font-size: 1.5rem;
+        margin-bottom: 5px;
+    }
+
+    .stats {
+        display: flex;
+        justify-content: space-around;
+        padding: 20px 0;
+    }
+    .stat-item {
+        text-align: center;
+    }
+    .stat-value {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: #d35400;
+    }
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
+    .review-item {
+        display: flex;
+        border-bottom: 1px solid #eee;
+        padding: 15px 0;
+    }
+    .review-avatar {
+        background-color: #d35400;
+        color: white;
+        border-radius: 50%;
+        width: 45px;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+    .review-content {
+        flex: 1;
+    }
+    .review-name {
+        font-weight: bold;
+    }
+    .review-rating {
+        color: #f39c12;
+    }
+
+    .alert {
+        display: flex;
+        background-color: #fff3e0;
+        padding: 15px;
+        border-left: 5px solid #e67e22;
+        margin-bottom: 10px;
+        border-radius: 6px;
+        gap: 10px;
+    }
+    .alert-icon {
+        font-size: 1.5rem;
+    }
+
+    .shortcuts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 15px;
+    }
+    .shortcut-btn {
+        flex: 1 1 30%;
+        padding: 15px;
+        text-align: center;
+        background-color: #fff6ee;
+        border: 2px solid #d35400;
+        border-radius: 6px;
+        color: #d35400;
+    }
+    .shortcut-icon {
+        font-size: 1.3rem;
+        display: block;
+        margin-bottom: 5px;
+    }
+
+    @media (max-width: 768px) {
+        .menu-item {
+            width: 48%;
+        }
+        .shortcuts {
+            flex-direction: column;
+        }
+    }
+</style>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOA - Home Restaurante</title>
+    <link rel="stylesheet" href="{% static 'estilo.css' %}">
+</head>
+<body class="homerestaurante">
+
+    <div class="header">
+        <img src="{% static 'imgs/Logo Aboa 1.png' %}" alt="ABOA Logo" class="logo">
+        <div class="nav-links">
+            <a href="#">Minha conta</a>
+            <a href="{% url 'logout' %}">Sair</a>
+            <a href="{% url 'index' %}">Home</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1 class="page-title">Olá, {{ user.username }}</h1>
+
+        <!-- Você pode colar aqui o restante do seu conteúdo idêntico ao que enviou -->
+        <!-- Exemplo de uma seção -->
+        <div class="status-card">
+            <div class="status-text">
+                <h2>Burger Place</h2>
+                <div class="status-open">
+                    <div class="status-indicator open"></div>
+                    <span><strong>Aberto agora</strong> - Fecha às 23:00</span>
+                </div>
+            </div>
+            <button class="button">
+                <span class="button-icon">⏱️</span>
+                Atualizar Horário
+            </button>
+        </div>
+
+        <!-- (continua com o restante da sua estrutura original) -->
+
+    </div>
+</body>
+</html>

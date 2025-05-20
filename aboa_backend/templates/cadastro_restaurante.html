@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cadastro de Restaurante</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fff6ee;
+        margin: 0;
+        padding: 40px;
+      }
+      .container {
+        max-width: 450px;
+        margin: auto;
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+      }
+      h2 {
+        color: #d35400;
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      label {
+        font-weight: bold;
+        margin-top: 12px;
+        display: block;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+      }
+      button {
+        margin-top: 25px;
+        background-color: #d35400;
+        color: white;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: 6px;
+        font-weight: bold;
+        font-size: 15px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #e67e22;
+      }
+      .error {
+        color: red;
+        text-align: center;
+        margin-top: 10px;
+      }
+      .top-bar {
+        margin-bottom: 20px;
+      }
+      .top-bar a {
+        color: #d35400;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+      }
+      .top-bar a:hover {
+        text-decoration: underline;
+      }
+      .login-link {
+        text-align: center;
+        margin-top: 20px;
+      }
+
+      .login-link a {
+        color: #d35400;
+        text-decoration: none;
+        font-weight: bold;
+      }
+
+      .login-link a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top-bar">
+        <a href="/">← Voltar para a Home</a>
+      </div>
+      <h2>Cadastro do Restaurante</h2>
+
+      {% if erro %}
+      <p class="error">{{ erro }}</p>
+      {% endif %}
+
+      <form method="POST">
+        {% csrf_token %}
+        <label for="username">Usuário</label>
+        <input type="text" name="username" required />
+
+        <label for="password1">Senha</label>
+        <input type="password" name="password1" required />
+
+        <label for="password2">Confirmar senha</label>
+        <input type="password" name="password2" required />
+
+        <button type="submit">Cadastrar</button>
+      </form>
+      <div class="login-link">
+        <p>Já tem uma conta? <a href="/login-restaurante/">Fazer login</a></p>
+      </div>
+    </div>
+  </body>
+</html>

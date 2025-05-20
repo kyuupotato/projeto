@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Login do Restaurante</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #fdf6f0;
+        margin: 0;
+        padding: 20px;
+      }
+      .container {
+        max-width: 500px;
+        margin: auto;
+        background: white;
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px #ccc;
+      }
+      h2 {
+        color: #d35400;
+        text-align: center;
+      }
+      label {
+        display: block;
+        margin-top: 15px;
+        font-weight: bold;
+      }
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      button {
+        margin-top: 20px;
+        background-color: #d35400;
+        color: white;
+        padding: 12px;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        font-weight: bold;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #e67e22;
+      }
+      .links {
+        text-align: center;
+        margin-top: 15px;
+      }
+      .links a {
+        text-decoration: none;
+        color: #d35400;
+        font-size: 0.9em;
+      }
+      .top-bar {
+        text-align: left;
+        margin-bottom: 20px;
+      }
+
+      .back-button {
+        display: inline-block;
+        margin-bottom: 20px;
+        color: #d35400;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 14px;
+        background-color: transparent;
+        border: 2px solid #d35400;
+        padding: 6px 12px;
+        border-radius: 6px;
+        transition: background-color 0.3s, color 0.3s;
+      }
+
+      .back-button:hover {
+        background-color: #d35400;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="top-bar">
+      <a href="/" class="back-button">← Voltar para a Home</a>
+    </div>
+    <div class="container">
+      <h2>Login do Restaurante</h2>
+      <form method="POST" action="/login-restaurante/">
+        {% csrf_token %}
+        <label for="username">Usuário</label>
+        <input type="text" name="username" id="username" required />
+
+        <label for="password">Senha</label>
+        <input type="password" name="password" id="password" required />
+
+        <button type="submit">Entrar</button>
+
+        <div class="links">
+          <a href="/cadastro-comercio/">Ainda não tem conta?</a>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>
