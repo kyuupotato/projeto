@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados da Busca</title>
+    <link rel="stylesheet" href="/static/estilo.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #d64a00;
+            color: white;
+            padding: 20px;
+            text-align: right;
+        }
+
+        .auth-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #d64a00;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background-color: white;
+            border-left: 5px solid #d64a00;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+        }
+
+        .card h2 {
+            margin: 0 0 10px 0;
+            color: #333;
+        }
+
+        .card p {
+            margin: 0;
+            color: #555;
+        }
+
+        .voltar {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .voltar a {
+            text-decoration: none;
+            color: white;
+            background-color: #d64a00;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .voltar a:hover {
+            background-color: #b93f00;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="auth-links">
+            <a href="/cadastro">Crie sua conta</a> |
+            <a href="/login">Login</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <h1>Resultados da sua busca</h1>
+
+        {% if lugares %}
+            {% for lugar in lugares %}
+                <div class="card">
+                    <h2>{{ lugar.nome }}</h2>
+                    <p>📍 {{ lugar.endereco }}</p>
+                    <p>🧭 Lat: {{ lugar.lat }} | Lon: {{ lugar.lon }}</p>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p style="text-align:center; font-size:18px; color:#666;">Nenhum lugar encontrado.</p>
+        {% endif %}
+
+        <div class="voltar">
+            <a href="/"> Voltar para a busca</a>
+        </div>
+    </div>
+</body>
+</html>
